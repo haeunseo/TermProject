@@ -1,0 +1,24 @@
+import cv2
+import sys
+
+
+# 가우시안 블러처리와 캐니 엣지검출
+def G_C(src):    # 'src.jpg'형태로 쓰기
+    img = cv2.imread(src, cv2.IMREAD_GRAYSCALE)
+    if img is None:
+        print('Image load failed!')
+        sys.exit()
+
+    blur = cv2.GaussianBlur(img, (0, 0), 1)
+    cv2.imwrite('blur.jpg', blur)
+    cv2.imshow("blur", blur)
+    cv2.waitKey()
+
+    cv2.destroyAllWindows()
+
+    canny = cv2.Canny(blur, 100, 100)
+    cv2.imwrite('canny.jpg', canny)
+    cv2.imshow("canny", canny)
+    cv2.waitKey()
+
+    cv2.destroyAllWindows()
