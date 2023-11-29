@@ -1,0 +1,16 @@
+import cv2  # OpenCV 라이브러리 import
+from TermProject.video_hand import results
+
+
+def roi(video, list1, list2):
+    left = int(min(list1))
+    right = int(max(list1))
+    bottom = int(max(list2))
+    top = int(min(list2))
+
+    height = bottom - top
+    width = right - left
+    rect_start = (left, top)
+    rect_end = (right - 1, bottom - 1)
+    while results.multi_hand_landmarks:
+        cv2.rectangle(video, rect_start, rect_end, (0, 255, 0), 3)
